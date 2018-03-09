@@ -3,31 +3,47 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/red"
+    android:background="@color/LightBlue"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Page_01">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Page 01"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="156dp" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/add_entry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="All Entry" />
+
+        <Button
+            android:id="@+id/show_progress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Show Progress" />
+
+    </LinearLayout>
+
     <TextView
         android:id="@+id/test_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@color/PowderBlue"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
         android:text="Page 01"
-        android:textColor="@color/white"
+        android:textColor="@color/Black"
         android:textSize="20sp"
         tools:layout_editor_absoluteX="156dp" />
 
-    <Button
-        android:id="@+id/test_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Test"/>
 </LinearLayout>

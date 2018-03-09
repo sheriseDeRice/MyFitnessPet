@@ -51,36 +51,36 @@ public class Page_01 extends Fragment{
         FabRClockwise = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotate_clockwise);
         FabRanticlockwise = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotate_anticlockwise);
 
+        fab_plus.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                if(isOpen){
+                    fab_sport.startAnimation(FabClose);
+                    fab_meal.startAnimation(FabClose);
+                    fab_plus.startAnimation(FabRanticlockwise);
+                    fab_meal.setClickable(false);
+                    fab_sport.setClickable(false);
+                    isOpen = false;
+                }
+                else{
+                    fab_sport.startAnimation(FabOpen);
+                    fab_meal.startAnimation(FabOpen);
+                    fab_plus.startAnimation(FabRClockwise);
+                    fab_meal.setClickable(true);
+                    fab_sport.setClickable(true);
+                    isOpen = true;
+                }
+
+            }
+        });
+
         btn1 = pageOne.findViewById(R.id.add_entry);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 txt.setText("Here shows all entry.");
-
-                fab_plus.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-
-                        if(isOpen){
-                            fab_sport.startAnimation(FabClose);
-                            fab_meal.startAnimation(FabClose);
-                            fab_plus.startAnimation(FabRanticlockwise);
-                            fab_meal.setClickable(false);
-                            fab_sport.setClickable(false);
-                            isOpen = false;
-                        }
-                        else{
-                            fab_sport.startAnimation(FabOpen);
-                            fab_meal.startAnimation(FabOpen);
-                            fab_plus.startAnimation(FabRClockwise);
-                            fab_meal.setClickable(true);
-                            fab_sport.setClickable(true);
-                            isOpen = true;
-                        }
-
-                    }
-                });
 
             }
         });

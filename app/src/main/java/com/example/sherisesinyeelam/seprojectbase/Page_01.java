@@ -1,7 +1,6 @@
 package com.example.sherisesinyeelam.seprojectbase;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -13,11 +12,11 @@ import android.widget.Button;
 import android.widget.TabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import java.lang.annotation.Annotation;
 
 /**
  * Created by SheriseSinYeeLam on 21/1/2018.
  */
+
 
 public class Page_01 extends Fragment{
     // extents AppCompatActivity

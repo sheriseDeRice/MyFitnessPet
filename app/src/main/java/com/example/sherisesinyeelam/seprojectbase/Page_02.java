@@ -5,6 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+
 
 /**
  * Created by SheriseSinYeeLam on 21/1/2018.

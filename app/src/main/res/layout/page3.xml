@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/blue"
+    android:background="@color/DarkSalmon"
     android:layout_height="match_parent">
 
     <TextView
@@ -11,7 +11,7 @@
         android:text="Page 03"
         android:layout_gravity="center"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@color/White"
         android:layout_height="wrap_content" />
 
 </android.support.constraint.ConstraintLayout>

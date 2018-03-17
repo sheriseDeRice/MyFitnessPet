@@ -1,16 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@color/Pink"
     android:layout_height="match_parent">
 
+
     <TextView
-        android:layout_width="wrap_content"
-        android:text="Page 02"
-        android:layout_gravity="center"
-        android:textSize="20sp"
-        android:textColor="@color/White"
-        android:layout_height="wrap_content" />
+        android:id="@+id/textDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="10dp"
+        android:textColor="@color/Black"
+        android:textSize="10pt"
+        android:text="Today's Date and Current Time"
+        android:fontFamily="casual"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/thePet"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="150dp"
+            android:paddingLeft="80dp"
+            android:paddingRight="80dp"
+            android:layout_weight="1"
+            android:adjustViewBounds="false"
+            android:cropToPadding="false"
+            android:scaleType="fitCenter"
+            app:srcCompat="@mipmap/baby_cat_normal" />
+
+        <ImageView
+            android:id="@+id/sb_emoji"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_marginTop="80dp"
+            android:contentDescription="@string/emoji_bubble"
+            android:paddingEnd="30dp"
+            android:paddingLeft="200dp"
+            android:paddingRight="30dp"
+            android:paddingStart="200dp"
+            android:paddingTop="10dp"
+            android:scaleType="fitEnd"
+            app:srcCompat="@mipmap/speech_bubble" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/tamago"
+                android:layout_width="50dp"
+                android:layout_height="150dp"
+                android:layout_gravity="bottom|start"
+                android:layout_marginBottom="15dp"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:contentDescription="@string/egg_to_hatch"
+                android:focusable="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="20dp"
+                android:scaleType="fitStart"
+                app:srcCompat="@mipmap/tamago" />
+
+            <ImageButton
+                android:id="@+id/tap_Pet"
+                android:layout_width="0.1dp"
+                android:layout_height="90dp"
+                android:layout_gravity="bottom|end"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="@dimen/fab_margin_right"
+                android:layout_marginRight="@dimen/fab_margin_right"
+                android:layout_weight="1"
+                android:background="@android:color/transparent"
+                android:clickable="true"
+                android:contentDescription="@string/pet_the_pet"
+                android:focusable="true"
+                android:paddingLeft="20dp"
+                android:paddingRight="10dp"
+                android:scaleType="fitEnd"
+                app:srcCompat="@drawable/pet_the_pet" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
 
 </LinearLayout>

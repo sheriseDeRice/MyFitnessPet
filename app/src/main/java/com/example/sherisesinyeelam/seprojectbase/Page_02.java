@@ -33,7 +33,7 @@ public class Page_02  extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View pageTwo = inflater.inflate(R.layout.page2, container, false);
+        final View pageTwo = inflater.inflate(R.layout.page2, container, false);
 
         dateAndTime(pageTwo);
 
@@ -44,11 +44,12 @@ public class Page_02  extends Fragment {
         final ImageButton hatchThePet = (ImageButton) pageTwo.findViewById(R.id.tamago);
         hatchThePet.setVisibility(View.VISIBLE);
 
-        final ImageView thePet = (ImageView) pageTwo.findViewById(R.id.thePet);
+        //final ImageView thePet = (ImageView) pageTwo.findViewById(R.id.thePet);
+        final ImageButton thePet = (ImageButton) pageTwo.findViewById(R.id.thePet);
         thePet.setVisibility(View.INVISIBLE);
 
-        final ImageButton petThePet = (ImageButton) pageTwo.findViewById(R.id.tap_Pet);
-        petThePet.setVisibility(View.INVISIBLE);
+//        final ImageButton petThePet = (ImageButton) pageTwo.findViewById(R.id.tap_Pet);
+//        petThePet.setVisibility(View.INVISIBLE);
 
         final ImageView theEmoji = (ImageView) pageTwo.findViewById(R.id.sb_emoji);
         theEmoji.setVisibility(View.INVISIBLE);
@@ -64,8 +65,8 @@ public class Page_02  extends Fragment {
         };
 
         final int[] petStartType = {
-                R.drawable.babycat_normalsize
-                //R.drawable.babydog_normal
+                R.drawable.babycat_normalsize,
+                R.drawable.babydog_normal
         };
 
         hatchThePet.setOnClickListener(new View.OnClickListener() {
@@ -75,18 +76,20 @@ public class Page_02  extends Fragment {
                 Random randomNumberGenerator = new Random();
                 int number = randomNumberGenerator.nextInt(2);
 
-                
+                pageTwo.setBackgroundResource(R.drawable.default_home);
+
                 thePet.setVisibility(View.VISIBLE);
-                thePet.setImageResource(petStartType[number]);
+                thePet.setImageResource(R.drawable.babycat_normalsize); //petStartType[number]
 
                 //when play is clicked hide hatch button
                 hatchThePet.setVisibility(View.INVISIBLE);
                 theEmoji.setVisibility(View.VISIBLE);
-                petThePet.setVisibility(View.VISIBLE);
+                //petThePet.setVisibility(View.VISIBLE);
             }
         });
 
-        petThePet.setOnClickListener(new View.OnClickListener() {
+        //petThePet.setOnClickListener(new View.OnClickListener() {
+        thePet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

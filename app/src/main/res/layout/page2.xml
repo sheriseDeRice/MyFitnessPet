@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/Pink"
+    android:background="@drawable/default_background"
     android:layout_height="match_parent">
 
 
@@ -13,11 +13,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:paddingEnd="0dp"
+        android:paddingRight="0dp"
+        android:paddingBottom="1dp"
+        android:paddingTop="1dp"
         android:textColor="@color/Black"
-        android:textSize="10pt"
-        android:text="Today's Date and Current Time"
+        android:textSize="9pt"
+        android:text="@string/today_s_date_and_current_time"
         android:fontFamily="casual"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        tools:targetApi="jelly_bean" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -27,14 +33,14 @@
             android:id="@+id/thePet"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="130dp"
             android:paddingLeft="80dp"
             android:paddingRight="80dp"
-            android:layout_weight="1"
             android:adjustViewBounds="false"
             android:cropToPadding="false"
             android:scaleType="fitCenter"
-            app:srcCompat="@mipmap/baby_cat_normal" />
+            app:srcCompat="@drawable/babycat_normalsize"
+            android:contentDescription="@string/the_pet_image" />
 
         <ImageView
             android:id="@+id/sb_emoji"
@@ -69,7 +75,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:scaleType="fitStart"
-                app:srcCompat="@mipmap/tamago" />
+                app:srcCompat="@drawable/tamago" android:paddingStart="10dp" android:paddingEnd="20dp" />
 
             <ImageButton
                 android:id="@+id/tap_Pet"
@@ -87,7 +93,7 @@
                 android:paddingLeft="20dp"
                 android:paddingRight="10dp"
                 android:scaleType="fitEnd"
-                app:srcCompat="@drawable/pet_the_pet" />
+                app:srcCompat="@drawable/pet_the_pet" android:paddingStart="20dp" android:paddingEnd="10dp" />
 
         </LinearLayout>
 

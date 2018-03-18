@@ -5,4 +5,6 @@
     <string name="emoji_bubble">Emoji Bubble</string>
     <string name="egg_to_hatch">Egg to Hatch</string>
     <string name="pet_the_pet">Pet the pet</string>
+    <string name="today_s_date_and_current_time">Today\'s Date and Current Time</string>
+    <string name="the_pet_image">The pet image</string>
 </resources>

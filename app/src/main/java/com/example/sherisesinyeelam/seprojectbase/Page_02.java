@@ -27,6 +27,8 @@ public class Page_02  extends Fragment {
 
     AppCompatActivity aca;
 
+    ImageView currentPet;
+
     public Page_02(){}
 
     @Override
@@ -62,8 +64,8 @@ public class Page_02  extends Fragment {
         };
 
         final int[] petStartType = {
-                R.mipmap.baby_cat_normal,
-                R.mipmap.baby_dog_normal
+                R.drawable.babycat_normalsize
+                //R.drawable.babydog_normal
         };
 
         hatchThePet.setOnClickListener(new View.OnClickListener() {
@@ -71,11 +73,10 @@ public class Page_02  extends Fragment {
             public void onClick(View view) {
 
                 Random randomNumberGenerator = new Random();
-
                 int number = randomNumberGenerator.nextInt(2);
 
+                
                 thePet.setVisibility(View.VISIBLE);
-
                 thePet.setImageResource(petStartType[number]);
 
                 //when play is clicked hide hatch button
@@ -92,7 +93,6 @@ public class Page_02  extends Fragment {
                 Log.d("Pet", "De Button has been pressed!");
 
                 Random randomNumberGenerator = new Random();
-
                 int number = randomNumberGenerator.nextInt(7);
 
                 theEmoji.setImageResource(emojiArray[number]);

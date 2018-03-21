@@ -33,29 +33,32 @@
             android:id="@+id/thePet"
             android:layout_width="match_parent"
             android:layout_height="300dp"
-            android:layout_marginTop="130dp"
+            android:layout_marginTop="140dp"
             android:adjustViewBounds="false"
             android:background="@android:color/transparent"
             android:contentDescription="@string/the_pet_image"
             android:cropToPadding="false"
             android:paddingLeft="80dp"
             android:paddingRight="80dp"
+            android:paddingTop="100dp"
+            android:paddingBottom="20dp"
             android:scaleType="fitCenter"
-            app:srcCompat="@drawable/babycat_normalsize" />
+            app:srcCompat="@drawable/babycat_normal" />
 
         <ImageView
             android:id="@+id/sb_emoji"
             android:layout_width="match_parent"
             android:layout_height="130dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
             android:contentDescription="@string/emoji_bubble"
-            android:paddingEnd="30dp"
-            android:paddingLeft="200dp"
-            android:paddingRight="30dp"
-            android:paddingStart="200dp"
-            android:paddingTop="10dp"
+            android:paddingEnd="50dp"
+            android:paddingRight="50dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:paddingTop="50dp"
+            android:paddingBottom="10dp"
             android:scaleType="fitEnd"
-            app:srcCompat="@mipmap/speech_bubble" />
+            app:srcCompat="@drawable/speech_bubble" />
 
         <LinearLayout
             android:layout_width="match_parent"

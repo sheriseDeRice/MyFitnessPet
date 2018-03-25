@@ -21,7 +21,6 @@ import java.lang.Runnable;
 import java.util.*;
 import java.io.*;
 
-
 /**
  * Created by SheriseSinYeeLam on 21/1/2018.
  */
@@ -47,7 +46,7 @@ public class Page_02  extends Fragment{
         // storing the starting date.
         startingDate = sdf.format(c.getTime());
 
-        goalDate = "25 Mar 2018\n05-31-00 PM"; // get form setting
+        goalDate = "25 Mar 2018\n07-12-00 PM"; // get form setting
     }
 
     @Override
@@ -173,10 +172,12 @@ public class Page_02  extends Fragment{
         long diffTillNow = dayDiffCalculator(startingDate, currentDate);
         long diffTillEnd = dayDiffCalculator(startingDate, goalDate);
 
-        if(caloriesCalculator(caloriesList) == 1 ){ //&& diffTillNow == diffTillEnd/3
+        if(caloriesCalculator(caloriesList) == 1){
+            // && dayDiffCalculator(startingDate, currentDate) == (dayDiffCalculator(startingDate, goalDate)/3)
             bodySize = R.drawable.babycat_fat;
         }
-        else if(caloriesCalculator(caloriesList) == -1){ //&& diffTillNow == diffTillEnd/3
+        else if(caloriesCalculator(caloriesList) == -1){
+            // && dayDiffCalculator(startingDate, currentDate) == (dayDiffCalculator(startingDate, goalDate)/3)
             bodySize = R.drawable.babycat_skinny;
         }
         else{
@@ -285,7 +286,7 @@ public class Page_02  extends Fragment{
         return healthyStatus;
     }
 
-    // calculate the date differences between two date (in string)
+    // calculate the date differences between two date (in string) in days
     public long dayDiffCalculator(String a, String b){
 
         long dateDiff = 0;
@@ -304,12 +305,7 @@ public class Page_02  extends Fragment{
             long diffHours = diff / (60 * 60 * 1000) % 24;
             long diffDays = diff / (24 * 60 * 60 * 1000);
 
-            dateDiff = diff; //in milliseconds
-
-//            System.out.print(diffDays + " days, ");
-//            System.out.print(diffHours + " hours, ");
-//            System.out.print(diffMinutes + " minutes, ");
-//            System.out.print(diffSeconds + " seconds.");
+            dateDiff = diffDays;
 
         } catch (Exception e){}
 

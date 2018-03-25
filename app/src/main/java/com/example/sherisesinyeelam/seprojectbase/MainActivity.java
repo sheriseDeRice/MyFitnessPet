@@ -1,5 +1,6 @@
 package com.example.sherisesinyeelam.seprojectbase;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TabHost;
 import android.content.SharedPreferences;
+import android.widget.TextView;
 
 import java.util.*;
 
@@ -23,12 +25,29 @@ public class MainActivity extends AppCompatActivity {
     TabLayout MyTabs;
     ViewPager MyPage;
 
+    //public static final String PREFS = "startingDate";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        checkFirstRun(); // check first running date
+        //checkFirstRun(); // check first running date
+        //getting the current time in milliseconds, and creating a Date object from it:
+//        Date date = new Date(); //or simply new Date(); or System.currentTimeMillis()
+//
+//        //converting it back to a milliseconds representation:
+//        int startDate = date.getDate();
+//
+//        SharedPreferences datePrefs = getSharedPreferences(PREFS, Context.MODE_PRIVATE); //MODE_PRIVATE
+//        datePrefs.edit().putInt("date", startDate).apply();
+//
+//        //Date sDate = new Date();
+//        //System.out.println(sDate);
+//
+//        TextView tv = (TextView) findViewById(R.id.showPrefs);
+//        tv.setText(datePrefs.getInt("date", 0));
+
 
         MyTabs = (TabLayout) findViewById(R.id.MyTabs);
         MyPage = (ViewPager) findViewById(R.id.MyPage);
@@ -100,38 +119,38 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    // check if the application is on its first run
-    //https://developer.android.com/reference/android/content/SharedPreferences.html
-    //https://stackoverflow.com/questions/7217578/check-if-application-is-on-its-first-run
-    private void checkFirstRun(){
-        final String PREFS_NAME = "MyPrefsFile";
-        final String PREF_VERSION_CODE_KEY = "version_code";
-        final int DOESNT_EXIST = -1;
-
-        // Get current version code
-        int currentVersionCode = BuildConfig.VERSION_CODE;
-
-        // Get saved version code
-        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        int savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST);
-
-        // Check for first run or upgrade
-        if (currentVersionCode == savedVersionCode) {
-
-            // This is just a normal run
-            return;
-
-        } else if (savedVersionCode == DOESNT_EXIST) {
-
-            // TODO This is a new install (or the user cleared the shared preferences)
-
-        } else if (currentVersionCode > savedVersionCode) {
-
-            // TODO This is an upgrade
-            savedVersionCode = currentVersionCode;
-        }
-
-        // Update the shared preferences with the current version code
-        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply();
-    }
+//    // check if the application is on its first run
+//    //https://developer.android.com/reference/android/content/SharedPreferences.html
+//    //https://stackoverflow.com/questions/7217578/check-if-application-is-on-its-first-run
+//    private void checkFirstRun(){
+//        final String PREFS_NAME = "MyPrefsFile";
+//        final String PREF_VERSION_CODE_KEY = "version_code";
+//        final int DOESNT_EXIST = -1;
+//
+//        // Get current version code
+//        int currentVersionCode = BuildConfig.VERSION_CODE;
+//
+//        // Get saved version code
+//        SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+//        int savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST);
+//
+//        // Check for first run or upgrade
+//        if (currentVersionCode == savedVersionCode) {
+//
+//            // This is just a normal run
+//            return;
+//
+//        } else if (savedVersionCode == DOESNT_EXIST) {
+//
+//            // TODO This is a new install (or the user cleared the shared preferences)
+//
+//        } else if (currentVersionCode > savedVersionCode) {
+//
+//            // TODO This is an upgrade
+//            savedVersionCode = currentVersionCode;
+//        }
+//
+//        // Update the shared preferences with the current version code
+//        prefs.edit().putInt(PREF_VERSION_CODE_KEY, currentVersionCode).apply();
+//    }
 }

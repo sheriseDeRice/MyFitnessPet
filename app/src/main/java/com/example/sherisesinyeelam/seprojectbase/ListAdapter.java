@@ -26,6 +26,7 @@ public class ListAdapter extends ArrayAdapter<Entry> {
         resourceID = resource;
 
     }
+
     //ToDo change names so they will make sense
     public View getView(int position, View convertView, ViewGroup parent){
         convertView = inflater.inflate(resourceID,null);

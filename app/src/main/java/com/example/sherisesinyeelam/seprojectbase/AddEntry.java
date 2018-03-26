@@ -26,8 +26,6 @@ public class AddEntry extends Fragment {
     private int calories;
     private String date;
 
-
-
     public AddEntry(){}
 
     @Override
@@ -40,11 +38,13 @@ public class AddEntry extends Fragment {
         final EditText editName = (EditText) AddEntry.findViewById(R.id.editEntryName);
         final EditText editCalories = (EditText) AddEntry.findViewById(R.id.editEntryCal);
         final EditText editDate = (EditText) AddEntry.findViewById(R.id.editEntryDate);
+
         if(name != null){
             editName.setText(name, TextView.BufferType.EDITABLE);
             editCalories.setText(String.valueOf(calories), TextView.BufferType.EDITABLE);
             editDate.setText(date, TextView.BufferType.EDITABLE);
         }
+
         final Button confirmButton = (Button) AddEntry.findViewById(R.id.confirmButton);
 
         confirmButton.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +63,7 @@ public class AddEntry extends Fragment {
 
         return AddEntry;
     }
+
     public void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
@@ -70,6 +71,7 @@ public class AddEntry extends Fragment {
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
     public void setActivity(Boolean activity) {
         isActivity = activity;
     }

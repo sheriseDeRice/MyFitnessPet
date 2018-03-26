@@ -104,6 +104,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
             }
         }
     }
+
     private void copyDataBase() throws IOException {
         InputStream myInput = context.getAssets().open(DB_NAME);
 
@@ -121,6 +122,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         myOutput.close();
         myInput.close();
     }
+
     private void dbUpdate() throws IOException {
         String path = DB_PATH + DB_NAME;
 
@@ -131,6 +133,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
             copyDataBase();
         }
     }
+
     private boolean checkDataBase() {
         SQLiteDatabase checkDB = null;
         try {
@@ -156,6 +159,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
             return false;
         }
     }
+
     public synchronized void close() {
         if (db != null)
             db.close();

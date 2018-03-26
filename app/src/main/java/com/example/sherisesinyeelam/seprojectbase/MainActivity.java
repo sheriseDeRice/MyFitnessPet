@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -113,6 +114,16 @@ public class MainActivity extends AppCompatActivity {
 
         // Get saved version code
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("StartingDate","18/03/2018");
+        editor.putString("Gender","Female");
+        editor.putInt("Age",18);
+        editor.putFloat("Height", 1.0f);
+        editor.putFloat("Weight",1.0f);
+        editor.apply();
+        Log.d("Shared",prefs.getString("Gender",""));
+
         int savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST);
 
         // Check for first run or upgrade

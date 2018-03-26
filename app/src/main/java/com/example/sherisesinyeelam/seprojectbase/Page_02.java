@@ -57,11 +57,6 @@ public class Page_02  extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         final View pageTwo = inflater.inflate(R.layout.page2, container, false);
 
-        // testing start date
-        final TextView tv = (TextView) pageTwo.findViewById(R.id.testStartDate);
-        tv.setText(startingDate);
-        //...
-
         setDefaultBackground(pageTwo); // set starting background, according to the time (day/night)
 
         dateAndTime(pageTwo); // the digital clock in the app
@@ -421,7 +416,10 @@ public class Page_02  extends Fragment{
 
     }
 
+    // set the background when first run the app --> before hatching the pet
     public void setDefaultBackground(final View pageTwo){
+
+        Calendar c = Calendar.getInstance();
 
         int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
 
@@ -433,18 +431,7 @@ public class Page_02  extends Fragment{
         }
     }
 
-//    public void setDefaultHome(final View pageTwo){
-//
-//        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-//
-//        if(timeOfDay >= 7 && timeOfDay < 17){
-//            pageTwo.setBackgroundResource(R.drawable.default_home_day);
-//        }
-//        else{
-//            pageTwo.setBackgroundResource(R.drawable.default_home_night);
-//        }
-//    }
-
+    // auto change background according to the time (day/night)
     public void autoChangeBackground(final View pageTwo){
 
         aca = new AppCompatActivity();

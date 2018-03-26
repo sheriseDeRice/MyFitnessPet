@@ -42,9 +42,9 @@ public class MainActivity extends AppCompatActivity {
     public void SetUpViewPager(ViewPager viewPage){
         MyViewPageAdapter adapter = new MyViewPageAdapter(getSupportFragmentManager());
 
+        adapter.AddFragmentPage(new Page_02(), "Home"); // Page 02
         adapter.AddFragmentPage(new Page_01(), "Entry"); // Page 01
         adapter.AddFragmentPage(new Page_04(), "Progress"); //page 04 - progress
-        adapter.AddFragmentPage(new Page_02(), "Home"); // Page 02
         adapter.AddFragmentPage(new Page_03(), "Setting"); // Page 03
         viewPage.setAdapter(adapter);
     }

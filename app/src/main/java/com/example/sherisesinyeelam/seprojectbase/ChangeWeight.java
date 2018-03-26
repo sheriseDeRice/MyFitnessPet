@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 public class ChangeWeight extends AppCompatActivity {
 
-    float weight ;
+    String weight ;
 
     EditText weightInput;
 
@@ -42,9 +42,9 @@ public class ChangeWeight extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try{
-                    weight = Float.valueOf(weightInput.getText().toString());
+                    weight = String.valueOf(weightInput.getText().toString());
                     SharedPreferences.Editor editor = prefs.edit();
-                    editor.putFloat("Weight",weight);
+                    editor.putString("Weight",weight);
                     editor.apply();
                     Toast.makeText(ChangeWeight.this,"Changed", Toast.LENGTH_LONG).show();
                     //Log.d("checkAge", ""+prefs.getFloat("Weight", 1.0f));

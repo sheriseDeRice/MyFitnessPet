@@ -29,15 +29,12 @@ import java.io.*;
 public class Page_02  extends Fragment{
 
     final String startingDate; // store the starting date.
-
     String currentDate; // check current date
-
     String goalDate; // the end date for the fitness plan
 
     AppCompatActivity aca;
 
     Calendar c;
-
     SimpleDateFormat sdf;
 
     DatabaseHandler dbh;
@@ -54,6 +51,7 @@ public class Page_02  extends Fragment{
         startingDate = sdf.format(c.getTime());
 
         goalDate = "26 Mar 2018\n01-30-00 PM"; // get form setting
+        //goalDate = prefs.getString("EndingDate", "");
     }
 
     @Override
@@ -115,7 +113,6 @@ public class Page_02  extends Fragment{
 
             }
         });
-
 
 //        Log.d("startLand", "create1");
 //        ////LANDING PAGE <----->
@@ -189,11 +186,12 @@ public class Page_02  extends Fragment{
 
         int sumCal = getSumCalories();
 
-        String goalDate = "26/04/2018"; // get from setting
+        // used to change pet image after a period of time (takes time), but now is not needed, used default as sample.
         long diffTillNow = dayDiffCalculator(startingDate, currentDate);
         long diffTillEnd = dayDiffCalculator(startingDate, goalDate);
 
 
+        // to use default value, uncomment the array above, and change sumcal to caloriesList
         if(caloriesCalculator(sumCal) == 1.0){
             // && diffTillNow == diffTillEnd/3 +- 3)
             bodySize = R.drawable.babycat_fat;
@@ -250,6 +248,7 @@ public class Page_02  extends Fragment{
 
         int healthyStatus;
 
+        // used to add up to calories when using default value.
 //        int sum = 0;
 //        for(int i = 0; i < caloriesList.length; i++){
 //            sum = sum + caloriesList[i];
@@ -257,12 +256,10 @@ public class Page_02  extends Fragment{
 
         double caloriesNeeded; // the healthy calories range.
 
-        // getGender(), getWeight(), getHeight(), getAge from setting
-
         String gender = prefs.getString("Gender", "");
         int age = prefs.getInt("Age", 0);
-        double height = Float.valueOf(prefs.getString("Height", ""));
-        double weight = Float.valueOf(prefs.getString("Weight",""));
+        double height = Float.parseFloat(prefs.getString("Height", ""));
+        double weight = Float.parseFloat(prefs.getString("Weight",""));
 
         // temporary value
 //        String gender = "woman";
@@ -400,30 +397,32 @@ public class Page_02  extends Fragment{
 
                     while (!isInterrupted()) {
 
-                        aca.runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
+                        try {
+                            aca.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
 
-                                if(getPetType() == R.drawable.babycat_normal){
-                                    thePet.setImageResource(getBabyBodySize());
+                                    if (getPetType() == R.drawable.babycat_normal) {
+                                        thePet.setImageResource(getBabyBodySize());
 
-                                    if(currentDate.equals(goalDate)){
-                                        thePet.setImageResource(getAdultBodySize());
-                                        //theEmoji.setImageResource(R.drawable.);
-                                        return; // return to the while loop
+                                        if (currentDate.equals(goalDate)) {
+                                            thePet.setImageResource(getAdultBodySize());
+                                            //theEmoji.setImageResource(R.drawable.);
+                                            return; // return to the while loop
+                                        }
                                     }
+
                                 }
+                            });
 
+                            Thread.sleep(1000);
+
+                            if (thePet.getDrawable().getConstantState() == getResources().getDrawable(getAdultBodySize()).getConstantState()) {
+                                // stop the threads when the pet became a adult pet
+                                thePet.setImageResource(getAdultBodySize());
+                                return;
                             }
-                        });
-
-                        Thread.sleep(1000);
-
-                        if (thePet.getDrawable().getConstantState() == getResources().getDrawable(getAdultBodySize()).getConstantState()){
-                            // stop the threads when the pet became a adult pet
-                            thePet.setImageResource(getAdultBodySize());
-                            return;
-                        }
+                        } catch (Exception e){}
 
                     }
                 } catch (InterruptedException e) {

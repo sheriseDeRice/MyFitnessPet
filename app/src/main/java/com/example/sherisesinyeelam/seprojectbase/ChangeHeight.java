@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class ChangeHeight extends AppCompatActivity {
-    float height ;
+    String height ;
 
     EditText heightInput;
 
@@ -31,7 +31,7 @@ public class ChangeHeight extends AppCompatActivity {
         try {
             String currentValue = prefs.getString("Height", "");
 
-            heightInput.setText(""+Float.valueOf(currentValue));
+            heightInput.setText("" + Float.valueOf(currentValue));
         } catch (Exception e) {}
 
         submitButton = (Button) findViewById(R.id.submitButton);
@@ -40,9 +40,9 @@ public class ChangeHeight extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    height = Float.valueOf(heightInput.getText().toString());
+                    height = String.valueOf(heightInput.getText().toString());
                     SharedPreferences.Editor editor = prefs.edit();
-                    editor.putFloat("Height", height);
+                    editor.putString("Height", height);
                     editor.apply();
                     Toast.makeText(ChangeHeight.this, "Changed", Toast.LENGTH_LONG).show();
                     //Log.d("checkAge", ""+prefs.getFloat("Height", 1.0f));

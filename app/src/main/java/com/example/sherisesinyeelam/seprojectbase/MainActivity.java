@@ -118,9 +118,9 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("StartingDate","18/03/2018");
         editor.putString("Gender","Female");
-        editor.putInt("Age",18);
-        editor.putFloat("Height", 1.0f);
-        editor.putFloat("Weight",1.0f);
+        editor.putInt("Age",20);
+        editor.putFloat("Height", 172.0f);
+        editor.putFloat("Weight",75.0f);
         editor.apply();
         Log.d("Shared",prefs.getString("Gender",""));
 

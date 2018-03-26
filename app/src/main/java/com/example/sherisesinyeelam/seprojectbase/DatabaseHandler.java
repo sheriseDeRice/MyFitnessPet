@@ -51,7 +51,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
     public ArrayList<Entry> readFromDB(String query) {
         //ToDo: remove logging to console
-        Log.d("readFromDB",query);
+        //Log.d("readFromDB",query);
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = query;
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -66,7 +66,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         while(!cursor.isAfterLast()){
             Entry entry = new Entry(cursor.getString(cursor.getColumnIndex("Name")),cursor.getInt(cursor.getColumnIndex("Calories")),cursor.getString(cursor.getColumnIndex("Date")));
             results.add(entry);
-            Log.d("DB",entry.getName()+"//"+entry.getCalories()+"//"+entry.getDate());
+            //Log.d("DB",entry.getName()+"//"+entry.getCalories()+"//"+entry.getDate());
             cursor.moveToNext();
         }
         cursor.close();

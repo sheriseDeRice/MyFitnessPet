@@ -109,8 +109,8 @@ public class Page_04 extends Fragment {
             if(dayDiffCalculator("18/03/2018",list.get(i).getDate()) <= 20){
 
                 long diff = dayDiffCalculator("18/03/2018",list.get(i).getDate());
-                Log.d("diff", String.valueOf(diff));
-                Log.d("day", list.get(i).getDate());
+                //Log.d("diff", String.valueOf(diff));
+                //Log.d("day", list.get(i).getDate());
                 calPerDay[(int)diff] += list.get(i).getCalories();
             }
         }

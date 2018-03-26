@@ -43,6 +43,8 @@ public class Page_02  extends Fragment{
 
     ArrayList<Entry> list;
 
+    SharedPreferences prefs;
+
     public Page_02(){
 
         c = Calendar.getInstance();
@@ -172,17 +174,17 @@ public class Page_02  extends Fragment{
 
         int sumCal = getSumCalories();
 
-
         String goalDate = "26/04/2018"; // get from setting
         long diffTillNow = dayDiffCalculator(startingDate, currentDate);
         long diffTillEnd = dayDiffCalculator(startingDate, goalDate);
 
+
         if(caloriesCalculator(sumCal) == 1){
-            // && dayDiffCalculator(startingDate, currentDate) == (dayDiffCalculator(startingDate, goalDate)/3)
+            // && diffTillNow == diffTillEnd/3 +- 3)
             bodySize = R.drawable.babycat_fat;
         }
         else if(caloriesCalculator(sumCal) == -1){
-            // && dayDiffCalculator(startingDate, currentDate) == (dayDiffCalculator(startingDate, goalDate)/3)
+            // && diffTillNow == diffTillEnd/3 +- 3)
             bodySize = R.drawable.babycat_skinny;
         }
         else{
@@ -237,20 +239,25 @@ public class Page_02  extends Fragment{
 //            sum = sum + caloriesList[i];
 //        }
 
-        double goal = -2.5; // lose weight: negative, maintain use 0; gain weight use positive;
-        // getGoal() from setting
-
         double caloriesNeeded; // the healthy calories range.
 
-        // temporary value
         // getGender(), getWeight(), getHeight(), getAge from setting
-        String gender = "woman";
-        double height = 172; // cm
-        double weight = 75; // kg
-        double age = 20;
+
+        prefs = getContext().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
+
+        String gender = prefs.getString("Gender", "");
+        int age = prefs.getInt("Age", 0);
+        float height = prefs.getFloat("Height", 1.0f);
+        float weight = prefs.getFloat("Weight",1.0f);
+
+        // temporary value
+//        String gender = "woman";
+//        double height = 172; // cm
+//        double weight = 75; // kg
+//        double age = 20;
         //calories needed = (717.75 + 318.267888) - (20 * 4.7) + 655 = 1597.01789
 
-        if(gender.equals("woman")){
+        if(gender.equals("Female")){
             // b.m for women
             double w = (weight * 2.2) * 4.35;
             double h = (height * 0.393701) * 4.7;

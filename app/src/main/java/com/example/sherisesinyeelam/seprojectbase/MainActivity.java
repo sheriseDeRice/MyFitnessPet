@@ -42,8 +42,9 @@ public class MainActivity extends AppCompatActivity {
     public void SetUpViewPager(ViewPager viewPage){
         MyViewPageAdapter adapter = new MyViewPageAdapter(getSupportFragmentManager());
 
-        adapter.AddFragmentPage(new Page_02(), "Home"); // Page 02
         adapter.AddFragmentPage(new Page_01(), "Entry"); // Page 01
+        adapter.AddFragmentPage(new Page_02(), "Home"); // Page 02
+
         adapter.AddFragmentPage(new Page_04(), "Progress"); //page 04 - progress
         adapter.AddFragmentPage(new Page_03(), "Setting"); // Page 03
         viewPage.setAdapter(adapter);
@@ -115,14 +116,15 @@ public class MainActivity extends AppCompatActivity {
         // Get saved version code
         SharedPreferences prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString("StartingDate","18/03/2018");
-        editor.putString("Gender","Female");
-        editor.putInt("Age",20);
-        editor.putFloat("Height", 172.0f);
-        editor.putFloat("Weight",75.0f);
-        editor.apply();
-        Log.d("Shared",prefs.getString("Gender",""));
+//        SharedPreferences.Editor editor = prefs.edit();
+//        editor.putString("StartingDate","18/03/2018");
+//        editor.putString("Gender","Female");
+//        editor.putInt("Age",20);
+//        editor.putFloat("Height", 172.0f);
+//        editor.putFloat("Weight",75.0f);
+//        editor.putString("FitnessPlan","");
+//        editor.apply();
+//        Log.d("Shared",prefs.getString("Gender",""));
 
         int savedVersionCode = prefs.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST);
 

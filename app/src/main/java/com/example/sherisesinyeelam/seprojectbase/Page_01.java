@@ -2,6 +2,7 @@ package com.example.sherisesinyeelam.seprojectbase;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import android.widget.ListView;
 import android.widget.TabHost;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,6 +56,8 @@ public class Page_01 extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View pageOne = inflater.inflate(R.layout.page1, container, false);
         super.onCreate(savedInstanceState);
+        SharedPreferences prefs = getContext().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
+
 
         //txt= pageOne.findViewById(R.id.test_txt);
         ImageButton imageButton = (ImageButton)pageOne.findViewById(R.id.imageButton);
@@ -153,8 +157,12 @@ public class Page_01 extends Fragment{
 //                }
             }
         });
+        ////LANDING PAGE <----->
+        if(prefs.getString("FitnessPlan","").equals("")){
 
+            replaceFragment(new LandingPage());
 
+        }
         return pageOne;
     }
 

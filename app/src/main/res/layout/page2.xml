@@ -5,7 +5,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:background="@drawable/default_background_day"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/home">
 
 
     <TextView

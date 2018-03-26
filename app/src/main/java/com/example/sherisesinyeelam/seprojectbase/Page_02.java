@@ -3,6 +3,7 @@ package com.example.sherisesinyeelam.seprojectbase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,6 +59,9 @@ public class Page_02  extends Fragment{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
         final View pageTwo = inflater.inflate(R.layout.page2, container, false);
+        super.onCreate(savedInstanceState);
+
+        prefs = getContext().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
 
         setDefaultBackground(pageTwo); // set starting background, according to the time (day/night)
 
@@ -112,6 +116,17 @@ public class Page_02  extends Fragment{
             }
         });
 
+
+//        Log.d("startLand", "create1");
+//        ////LANDING PAGE <----->
+//        if(prefs.getString("FitnessPlan","").equals("")){
+//
+//            Log.d("Land", "create2");
+//            replaceFragment(new LandingPage());
+//            Log.d("Landed", "create3");
+//
+//        }
+//        Log.d("EndLand", "create4");
         return pageTwo;
     }
 
@@ -179,11 +194,11 @@ public class Page_02  extends Fragment{
         long diffTillEnd = dayDiffCalculator(startingDate, goalDate);
 
 
-        if(caloriesCalculator(sumCal) == 1){
+        if(caloriesCalculator(sumCal) == 1.0){
             // && diffTillNow == diffTillEnd/3 +- 3)
             bodySize = R.drawable.babycat_fat;
         }
-        else if(caloriesCalculator(sumCal) == -1){
+        else if(caloriesCalculator(sumCal) == -1.0){
             // && diffTillNow == diffTillEnd/3 +- 3)
             bodySize = R.drawable.babycat_skinny;
         }
@@ -228,7 +243,8 @@ public class Page_02  extends Fragment{
     }
 
     // calculate the entry calories and compare with the goal.
-    public int caloriesCalculator(int sumCal){ //int[] caloriesList
+    public int caloriesCalculator(int sumCal){
+        //int[] caloriesList
 
         // 0 = maintain; 1 = over ate; -1 = not ate enough.
 
@@ -243,12 +259,10 @@ public class Page_02  extends Fragment{
 
         // getGender(), getWeight(), getHeight(), getAge from setting
 
-        prefs = getContext().getSharedPreferences("MyPrefsFile", Context.MODE_PRIVATE);
-
         String gender = prefs.getString("Gender", "");
         int age = prefs.getInt("Age", 0);
-        float height = prefs.getFloat("Height", 1.0f);
-        float weight = prefs.getFloat("Weight",1.0f);
+        double height = Float.valueOf(prefs.getString("Height", ""));
+        double weight = Float.valueOf(prefs.getString("Weight",""));
 
         // temporary value
 //        String gender = "woman";
@@ -315,9 +329,7 @@ public class Page_02  extends Fragment{
             if(dayDiffCalculator(list.get(i).getDate(), "18/03/2018") <= 7){
                 perDay+= list.get(i).getCalories();
             }
-
         }
-
         return perDay;
     }
 
@@ -470,6 +482,15 @@ public class Page_02  extends Fragment{
         t.start();
 
     }
+
+//    public void replaceFragment(Fragment fragment) {
+//
+//        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//
+//        transaction.replace(R.id.home, fragment);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
+//    }
 
 }
 

@@ -80,11 +80,9 @@ public class Page_02  extends Fragment{
             @Override
             public void onClick(View view) {
 
-                setDefaultHome(pageTwo); // set new background
+                thePet.setVisibility(View.VISIBLE); // make pet button visible
 
                 autoChangeBackground(pageTwo); // auto change background according to the time (day/night)
-
-                thePet.setVisibility(View.VISIBLE); // make pet button visible
 
                 showPetImage(pageTwo, thePet); // show the current pet type and body size
 
@@ -319,7 +317,6 @@ public class Page_02  extends Fragment{
         }
 
         return perDay;
-
     }
 
     // calculate the date differences between two date (in string) in days
@@ -436,17 +433,17 @@ public class Page_02  extends Fragment{
         }
     }
 
-    public void setDefaultHome(final View pageTwo){
-
-        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
-
-        if(timeOfDay >= 7 && timeOfDay < 17){
-            pageTwo.setBackgroundResource(R.drawable.default_home_day);
-        }
-        else{
-            pageTwo.setBackgroundResource(R.drawable.default_home_night);
-        }
-    }
+//    public void setDefaultHome(final View pageTwo){
+//
+//        int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+//
+//        if(timeOfDay >= 7 && timeOfDay < 17){
+//            pageTwo.setBackgroundResource(R.drawable.default_home_day);
+//        }
+//        else{
+//            pageTwo.setBackgroundResource(R.drawable.default_home_night);
+//        }
+//    }
 
     public void autoChangeBackground(final View pageTwo){
 
@@ -457,14 +454,21 @@ public class Page_02  extends Fragment{
             public void run() {
                 try {
                     while (!isInterrupted()) {
-                        Thread.sleep(1000);
+
                         aca.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-
-                                setDefaultHome(pageTwo);
+                                Calendar c = Calendar.getInstance();
+                                int timeOfDay = c.get(Calendar.HOUR_OF_DAY);
+                                if(timeOfDay >= 7 && timeOfDay < 17){
+                                    pageTwo.setBackgroundResource(R.drawable.default_home_day);
+                                }
+                                else{
+                                    pageTwo.setBackgroundResource(R.drawable.default_home_night);
+                                }
                             }
                         });
+                        Thread.sleep(1000);
                     }
                 } catch (InterruptedException e) {}
             }

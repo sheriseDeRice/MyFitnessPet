@@ -21,10 +21,12 @@
         android:paddingLeft="50dp"
         android:paddingRight="10dp"
         android:paddingTop="0dp"
-        android:text="Calories record in past 30 days"
+        android:text="Calories record in past 20 days"
         android:textColor="@color/Black"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="156dp" />
+        tools:layout_editor_absoluteX="156dp"
+        android:textStyle="bold"
+        tools:targetApi="jelly_bean" />
 
     <com.jjoe64.graphview.GraphView
 
@@ -53,7 +55,9 @@
         android:text=""
         android:textColor="@color/Black"
         android:textSize="20sp"
-        tools:layout_editor_absoluteX="156dp" />
+        tools:layout_editor_absoluteX="156dp"
+        android:fontFamily="casual"
+        tools:targetApi="jelly_bean"/>
 
 
 </LinearLayout>

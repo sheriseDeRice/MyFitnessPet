@@ -31,12 +31,14 @@ public class Page_04 extends Fragment {
     GraphView graphView;
 
     SimpleDateFormat sdf;
+    TextView txt;
 
     DatabaseHandler dbh;
 
     ArrayList<Entry> list;
 
     int [] calPerDay;
+    int average;
 
     public Page_04() {
 
@@ -54,7 +56,44 @@ public class Page_04 extends Fragment {
         LineGraphSeries<DataPoint> series = new LineGraphSeries<>(getDataPoint());
         graphView.addSeries(series);
 
+        average = getAverage();
+
+        txt = (TextView) pageFour.findViewById(R.id.bot_text);
+
+        if(average < 1000){
+            txt.setText("\nThe monthly average is " + average + ".\n\nYou are under eating!! You need to eat more!");
+        }
+        else if(average > 3000){
+            txt.setText("\nThe monthly average is " + average + ".\n\nYou are over eating!! You need to eat less!");
+        }
+        else{
+            txt.setText("\nThe monthly average is " + average + ".\n\nGood job!! You should keep it up!");
+        }
+
         return pageFour;
+    }
+    public int getAverage(){
+
+        dbh = new DatabaseHandler(getContext());
+        list = dbh.readFromDB("SELECT DISTINCT * FROM CaloriesIntake");
+
+        int sum = 0;
+
+        for(int i = 0; i < list.size(); i++){
+
+            //if(dayDiffCalculator(list.get(i).getDate(), "18/03/2018") <= 7){
+            //    perDay+= list.get(i).getCalories();
+            //}
+            if(dayDiffCalculator("18/03/2018",list.get(i).getDate()) <= 30){
+
+                sum += list.get(i).getCalories();
+
+            }
+        }
+
+        average = sum/30;
+
+        return average;
     }
 
     public void getDailyCalories(){
@@ -67,18 +106,15 @@ public class Page_04 extends Fragment {
             //if(dayDiffCalculator(list.get(i).getDate(), "18/03/2018") <= 7){
             //    perDay+= list.get(i).getCalories();
             //}
-            if(dayDiffCalculator("18/03/2018",list.get(i).getDate()) <= 30){
+            if(dayDiffCalculator("18/03/2018",list.get(i).getDate()) <= 20){
 
                 long diff = dayDiffCalculator("18/03/2018",list.get(i).getDate());
                 Log.d("diff", String.valueOf(diff));
                 Log.d("day", list.get(i).getDate());
                 calPerDay[(int)diff] += list.get(i).getCalories();
             }
-
         }
-
         return;
-
     }
 
     // calculate the date differences between two date (in string) in days
@@ -131,16 +167,8 @@ public class Page_04 extends Fragment {
                 new DataPoint(17,calPerDay[17]),
                 new DataPoint(18,calPerDay[18]),
                 new DataPoint(19,calPerDay[19]),
-                new DataPoint(20,calPerDay[20]),
-                new DataPoint(21,calPerDay[21]),
-                new DataPoint(22,calPerDay[22]),
-                new DataPoint(23,calPerDay[23]),
-                new DataPoint(24,calPerDay[24]),
-                new DataPoint(25,calPerDay[25]),
-                new DataPoint(26,calPerDay[26]),
-                new DataPoint(27,calPerDay[27]),
-                new DataPoint(28,calPerDay[28]),
-                new DataPoint(29,calPerDay[29])
+                new DataPoint(20,calPerDay[20])
+
         };
         return (dp);
     }

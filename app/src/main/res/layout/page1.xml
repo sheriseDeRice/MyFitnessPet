@@ -1,90 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/LightBlue"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
+    android:id="@+id/page1_fragment"
     tools:context=".Page_01">
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <Button
-            android:id="@+id/add_entry"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="All Entry" />
-
-        <Button
-            android:id="@+id/show_progress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Show Progress" />
-
-    </LinearLayout>
-
-    <TextView
-        android:id="@+id/test_txt"
-        android:layout_width="match_parent"
-        android:layout_height="350dp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        android:background="@color/PowderBlue"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:text="Page 01"
-        android:textColor="@color/Black"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="156dp" />
-
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_sport"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="@dimen/fab_margin_right"
+        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="32dp"
         android:backgroundTint="@color/MediumPurple"
         android:clickable="true"
         android:elevation="6dp"
         android:src="@drawable/ic_action_sports"
         android:visibility="invisible"
-        app:pressedTranslationZ="12dp" />
+        app:layout_constraintBottom_toTopOf="@+id/fab_plus"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="12dp"
+        />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_meal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="15dp"
-        android:layout_marginRight="@dimen/fab_margin_right"
+        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="44dp"
         android:backgroundTint="@color/RoyalBlue"
         android:clickable="true"
         android:elevation="6dp"
         android:src="@drawable/ic_action_meal"
         android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fab_plus"
         app:pressedTranslationZ="12dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="278dp"
+        android:layout_height="46dp"
+
+        android:layout_marginTop="24dp"
+        android:editable="true"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toStartOf="@+id/imageButton"
+        app:layout_constraintHorizontal_bias="0.634"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_plus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:clickable="true"
         android:layout_gravity="bottom|end"
-        android:layout_marginRight="@dimen/fab_margin_right"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_action_plus"
+        android:layout_marginBottom="56dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
         android:elevation="6dp"
-        android:id="@+id/fab_plus"
-        app:pressedTranslationZ="12dp" />
+        android:src="@drawable/ic_action_plus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:pressedTranslationZ="12dp"
+        app:elevation="1dp"/>
 
-</LinearLayout>
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="49dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="24dp"
+        android:src="@android:drawable/ic_menu_search"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="wrap_content"
+        android:layout_height="428dp"
+        android:layout_marginTop="184dp"
+        android:background="@color/Crimson"
+        android:elevation="0dp"
+        android:entries="@android:string/httpErrorUnsupportedScheme"
+        android:scrollbars="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="306dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="8dp"
+        android:text="Name"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="96dp"
+        android:layout_height="24dp"
+        android:text="Calories (kcal)"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/listView"
+        app:layout_constraintStart_toEndOf="@+id/textView" />
+
+</android.support.constraint.ConstraintLayout>

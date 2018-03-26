@@ -46,7 +46,7 @@ public class Page_02  extends Fragment{
         // storing the starting date.
         startingDate = sdf.format(c.getTime());
 
-        goalDate = "25 Mar 2018\n07-12-00 PM"; // get form setting
+        goalDate = "26 Mar 2018\n12-27-00 PM"; // get form setting
     }
 
     @Override
@@ -161,12 +161,15 @@ public class Page_02  extends Fragment{
         int bodySize;
 
         // below is temporary value, get data from entry part.
-        //int[] caloriesList = {1275, 1300, 1100, 978, 1689, 2000, 1500}; // test skinny body size change
-        // sum = 8742
-        // avg = sum/7 = 1248.85714
-        int[] caloriesList = {1675, 1600, 1500, 1978, 1689, 2000, 1751};
-        // sum = 12193
-        // avg = 1741.85714
+        //int[] caloriesList = {1275, 1300, 1100, 978, 1689, 2000, 1500}; // test normal body size change
+        // sum = 9842
+        // avg = sum/7 = 1406
+        int[] caloriesList = {1875, 2221, 2800, 1978, 1689, 2160, 2751}; // test fat body size
+        // sum = 15474
+        // avg = 2210.57143
+        //int[] caloriesList = {875, 1000, 1100, 978, 789, 1132, 1045}; // test skinny body size change
+        // sum = 6919
+        // avg = sum/7 = 988.428571
 
         String goalDate = "26/04/2018"; // get from setting
         long diffTillNow = dayDiffCalculator(startingDate, currentDate);
@@ -195,12 +198,15 @@ public class Page_02  extends Fragment{
         int bodySize;
 
         // below is temporary value, get data from entry part.
-        int[] caloriesList = {1275, 1300, 1100, 978, 1689, 2000, 1500}; // test skinny body size change
-        // sum = 8742
-        // avg = sum/7 = 1248.85714
-        //int[] caloriesList = {1675, 1600, 1500, 1978, 1689, 2000, 1751};
-        // sum = 12193
-        // avg = 1741.85714
+        int[] caloriesList = {1275, 1300, 1100, 978, 1689, 2000, 1500}; // test normal body size change
+        // sum = 9842
+        // avg = sum/7 = 1406
+        //int[] caloriesList = {1875, 2221, 2800, 1978, 1689, 2160, 2751}; // test fat body size
+        // sum = 15474
+        // avg = 2210.57143
+        //int[] caloriesList = {875, 1000, 1100, 978, 789, 1132, 1045}; // test skinny body size change
+        // sum = 6919
+        // avg = sum/7 = 988.428571
 
         if(caloriesCalculator(caloriesList) == 1){
             bodySize = R.drawable.adultcat_fat;
@@ -273,10 +279,10 @@ public class Page_02  extends Fragment{
 
         double weeklyAvg = sum/7;
 
-        if (weeklyAvg > caloriesNeeded){
+        if (weeklyAvg > (caloriesNeeded + 500)){
             healthyStatus = 1;
         }
-        else if (weeklyAvg < caloriesNeeded){
+        else if (weeklyAvg < (caloriesNeeded - 500)){
             healthyStatus = -1;
         }
         else{
@@ -341,7 +347,7 @@ public class Page_02  extends Fragment{
     }
 
     // change image button over a period of time depends on the weekly calories that the user ate and the goal date
-    public void showPetImage(final View pageTwo, final ImageButton thePet){
+    public void showPetImage(final View pageTwo, final ImageButton thePet){ //final ImageView theEmoji
 
         aca = new AppCompatActivity();
 
@@ -349,6 +355,8 @@ public class Page_02  extends Fragment{
             @Override
             public void run() {
                 try {
+                    Thread.sleep(1000); // change to weekly
+
                     while (!isInterrupted()) {
 
                         aca.runOnUiThread(new Runnable() {
@@ -357,14 +365,17 @@ public class Page_02  extends Fragment{
 
                                 if(getPetType() == R.drawable.babycat_normal){
                                     thePet.setImageResource(getBabyBodySize());
+
+                                    if(currentDate.equals(goalDate)){
+                                        thePet.setImageResource(getAdultBodySize());
+                                        //theEmoji.setImageResource(R.drawable.);
+                                        return; // return to the while loop
+                                    }
                                 }
 
-                                if(currentDate.equals(goalDate)){
-                                    thePet.setImageResource(getAdultBodySize());
-                                    return; // return to the while loop
-                                }
                             }
                         });
+
                         Thread.sleep(1000);
 
                         if (thePet.getDrawable().getConstantState() == getResources().getDrawable(getAdultBodySize()).getConstantState()){
@@ -372,6 +383,7 @@ public class Page_02  extends Fragment{
                             thePet.setImageResource(getAdultBodySize());
                             return;
                         }
+
                     }
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();

@@ -24,6 +24,7 @@
         <activity android:name=".changeAge"/>
         <activity android:name=".ChangeFitnessPlan"/>
         <activity android:name=".ChangeGender"/>
+        <activity android:name=".ChangeGoalDate"/>
     </application>
 
 </manifest>

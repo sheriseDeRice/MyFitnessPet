@@ -101,6 +101,7 @@ public class LandingPage extends Fragment {
         final EditText editTextAge = (EditText) LandingPage.findViewById(R.id.editText3);
         final EditText editTextHeight = (EditText) LandingPage.findViewById(R.id.editText4);
         final EditText editTextWeight = (EditText) LandingPage.findViewById(R.id.editText5);
+        final EditText editTextGoal = (EditText) LandingPage.findViewById(R.id.date);
         confirmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -108,10 +109,12 @@ public class LandingPage extends Fragment {
                     int age = Integer.valueOf(String.valueOf(editTextAge.getText()));
                     String height = String.valueOf(editTextHeight.getText());
                     String weight = String.valueOf(editTextWeight.getText());
+                    String goal = String.valueOf(editTextGoal.getText());
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putInt("Age", age);
                     editor.putString("Height", height);
                     editor.putString("Weight", weight);
+                    editor.putString("EndingDate", goal);
                     editor.apply();
                     confirmButton.setVisibility(View.INVISIBLE);
                     Log.d("Landing Page", prefs.getString("Height", ""));
@@ -123,7 +126,6 @@ public class LandingPage extends Fragment {
                 }
             }
         });
-
 
         return LandingPage;
     }

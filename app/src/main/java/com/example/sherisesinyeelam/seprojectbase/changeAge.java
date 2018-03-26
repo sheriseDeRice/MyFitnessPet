@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 public class changeAge extends AppCompatActivity {
 
-
     int age;
 
     EditText ageInput;
@@ -19,7 +18,6 @@ public class changeAge extends AppCompatActivity {
     Button ageSubmit;
 
     final String PREFS_NAME = "MyPrefsFile";
-
 
 
     @Override
@@ -56,7 +54,6 @@ public class changeAge extends AppCompatActivity {
 
                     Toast.makeText(changeAge.this,"Invalid value", Toast.LENGTH_LONG).show();
                 }
-
             }
         });
 

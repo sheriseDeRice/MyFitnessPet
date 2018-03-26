@@ -18,6 +18,7 @@ public class Page_03  extends Fragment {
     private Button button3;
     private Button button4;
     private Button button5;
+    private Button button6;
 
     public Page_03(){}
 
@@ -28,22 +29,23 @@ public class Page_03  extends Fragment {
         button = PageThree.findViewById(R.id.button);
         button2 = PageThree.findViewById(R.id.button2);
         button3 = PageThree.findViewById(R.id.button3);
-        button4= PageThree.findViewById(R.id.button4);
-        button5=PageThree.findViewById(R.id.button5);
+        button4 = PageThree.findViewById(R.id.button4);
+        button5 = PageThree.findViewById(R.id.button5);
+        button6 = PageThree.findViewById(R.id.button6);
 
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent inte = new Intent(getActivity(), ChangeWeight.class);
-                startActivity(inte);
+                Intent intent = new Intent(getActivity(), ChangeWeight.class);
+                startActivity(intent);
             }
         });
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ChangeHeight.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(getActivity(), ChangeHeight.class);
+                startActivity(intent1);
             }
 
         });
@@ -71,6 +73,16 @@ public class Page_03  extends Fragment {
                 startActivity(intent4);
             }
         });
+
+        button6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent5 = new Intent(getActivity(),ChangeGoalDate.class);
+                startActivity(intent5);
+            }
+        });
+
+
         return PageThree;
     }
 

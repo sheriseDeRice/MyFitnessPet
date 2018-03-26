@@ -7,4 +7,17 @@
     <string name="pet_the_pet">Pet the pet</string>
     <string name="today_s_date_and_current_time">Today\'s Date and Current Time</string>
     <string name="the_pet_image">The pet image</string>
+
+    <string-array name="genders">
+        <item>Please select</item>
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+
+    <string-array name="fitness_plan">
+        <item>Please select a fitness plan</item>
+        <item>Lose Weight</item>
+        <item>Gain Weight</item>
+        <item>Maintain Weight</item>
+    </string-array>
 </resources>

@@ -1,5 +1,7 @@
 package com.example.sherisesinyeelam.seprojectbase;
 
+import java.util.ArrayList;
+
 /**
  * Created by Michal on 25.03.2018.
  */
@@ -8,6 +10,7 @@ public class Entry {
     protected String Name;
     protected int Calories;
     protected String Date;
+
     public Entry(String name, int calories, String date) {
         Name = name;
         Calories = calories;
@@ -37,4 +40,5 @@ public class Entry {
     public void setDate(String date) {
         Date = date;
     }
+
 }

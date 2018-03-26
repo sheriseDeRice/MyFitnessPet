@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ChangeHeight"/>
+        <activity android:name=".ChangeWeight"/>
+        <activity android:name=".changeAge"/>
+        <activity android:name=".ChangeFitnessPlan"/>
+        <activity android:name=".ChangeGender"/>
     </application>
 
 </manifest>

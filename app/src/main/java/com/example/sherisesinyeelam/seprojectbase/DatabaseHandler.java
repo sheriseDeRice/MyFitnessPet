@@ -32,7 +32,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     private static String DB_PATH = "";
     private static String DB_NAME = "calories1.db";
     private static final String TABLE_CAL ="CaloriesIntake" ;
-    private static int CurrentVersion = 2;
+    private static int CurrentVersion = 3;
 
     public DatabaseHandler(Context context){
 
@@ -74,6 +74,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         return results;
 
     }
+
     public boolean writeToDB(String name, int calories, String date){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -89,24 +90,16 @@ public class DatabaseHandler extends SQLiteOpenHelper{
     }
 
     public void create() throws IOException {
-        Log.d("DBcheck", "create1");
+        //Log.d("DBcheck", "create1");
         boolean dbExist = checkDataBase();
-        Log.d("DBcheck", "create2");
         if (dbExist) {
-            Log.d("DBcheck", "create3");
             dbUpdate();
-            Log.d("DBcheck", "create4");
         } else {
-            Log.d("DBcheck", "create5");
             this.getReadableDatabase();
-            Log.d("DBcheck", "create6");
             try {
-                Log.d("DBcheck", "create7");
                 copyDataBase();
-                Log.d("DBcheck", "create8");
 
             } catch (IOException e) {
-                Log.d("DBcheck", "create9");
                 throw new Error("Error copying database");
             }
         }
@@ -129,20 +122,13 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         myInput.close();
     }
     private void dbUpdate() throws IOException {
-        Log.d("DBcheck", "create5");
         String path = DB_PATH + DB_NAME;
 
-        Log.d("DBcheck", "create6");
         SQLiteDatabase upd = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
-        Log.d("DBcheck", "create7");
         int ver = upd.getVersion();
-        Log.d("DBcheck", "create8");
         if(ver!= CurrentVersion){
-            Log.d("DBcheck", "create9");
             upd.execSQL("DROP TABLE " + TABLE_CAL);
-            Log.d("DBcheck", "create10");
             copyDataBase();
-            Log.d("DBcheck", "create11");
         }
     }
     private boolean checkDataBase() {

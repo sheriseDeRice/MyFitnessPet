@@ -58,18 +58,21 @@ public class Page_01 extends Fragment{
         //txt= pageOne.findViewById(R.id.test_txt);
         ImageButton imageButton = (ImageButton)pageOne.findViewById(R.id.imageButton);
         imageButton.setOnClickListener(listenerImageButton);
-
         final ListView listView = (ListView)pageOne.findViewById(R.id.listView);
+
         db = new DatabaseHandler(getContext());
+
         try {
             db.create();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
         ArrayList<Entry> dbentries = db.readFromDB("SELECT DISTINCT * FROM CaloriesIntake LIMIT 16");
         ArrayAdapter adapter = new ListAdapter(this.getContext(), R.layout.dblist,dbentries){
 
         };
+
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -89,6 +92,7 @@ public class Page_01 extends Fragment{
 
             }
         });
+
         aca = new AppCompatActivity();
         fab_plus = (FloatingActionButton) pageOne.findViewById(R.id.fab_plus);
         fab_meal = (FloatingActionButton) pageOne.findViewById(R.id.fab_meal);
@@ -143,6 +147,10 @@ public class Page_01 extends Fragment{
                 Log.d("EditText", editable.toString());
                 ArrayAdapter adapter = new ListAdapter(getContext(), R.layout.dblist,resultsTV);
                 listView.setAdapter(adapter);
+//                if(resultsTV.size() == 0){
+//
+//
+//                }
             }
         });
 
@@ -162,9 +170,6 @@ public class Page_01 extends Fragment{
             fab_meal.setClickable(false);
             fab_sport.setClickable(false);
             isOpen = false;
-
-
-
         }
     };
 
@@ -180,8 +185,6 @@ public class Page_01 extends Fragment{
             fab_meal.setClickable(false);
             fab_sport.setClickable(false);
             isOpen = false;
-
-
         }
     };
 

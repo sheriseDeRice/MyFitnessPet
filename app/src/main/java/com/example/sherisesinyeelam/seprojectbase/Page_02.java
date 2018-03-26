@@ -39,6 +39,10 @@ public class Page_02  extends Fragment{
 
     SimpleDateFormat sdf;
 
+    DatabaseHandler dbh;
+
+    ArrayList<Entry> list;
+
     public Page_02(){
 
         c = Calendar.getInstance();
@@ -46,7 +50,7 @@ public class Page_02  extends Fragment{
         // storing the starting date.
         startingDate = sdf.format(c.getTime());
 
-        goalDate = "26 Mar 2018\n12-27-00 PM"; // get form setting
+        goalDate = "26 Mar 2018\n01-30-00 PM"; // get form setting
     }
 
     @Override
@@ -155,8 +159,10 @@ public class Page_02  extends Fragment{
     // check the period of time, compare it with the starting date and goal date
     // compare the calories over time and change the pet body size if the user over ate for a period of time etc.
     public int getBabyBodySize(){
-
         // 0 = maintain; 1 = over ate; -1 = not ate enough.
+
+        dbh = new DatabaseHandler(getContext());
+        list = dbh.readFromDB("SELECT DISTINCT * FROM CaloriesIntake");
 
         int bodySize;
 
@@ -164,22 +170,25 @@ public class Page_02  extends Fragment{
         //int[] caloriesList = {1275, 1300, 1100, 978, 1689, 2000, 1500}; // test normal body size change
         // sum = 9842
         // avg = sum/7 = 1406
-        int[] caloriesList = {1875, 2221, 2800, 1978, 1689, 2160, 2751}; // test fat body size
+        //int[] caloriesList = {1875, 2221, 2800, 1978, 1689, 2160, 2751}; // test fat body size
         // sum = 15474
         // avg = 2210.57143
         //int[] caloriesList = {875, 1000, 1100, 978, 789, 1132, 1045}; // test skinny body size change
         // sum = 6919
         // avg = sum/7 = 988.428571
 
+        int sumCal = getSumCalories();
+
+
         String goalDate = "26/04/2018"; // get from setting
         long diffTillNow = dayDiffCalculator(startingDate, currentDate);
         long diffTillEnd = dayDiffCalculator(startingDate, goalDate);
 
-        if(caloriesCalculator(caloriesList) == 1){
+        if(caloriesCalculator(sumCal) == 1){
             // && dayDiffCalculator(startingDate, currentDate) == (dayDiffCalculator(startingDate, goalDate)/3)
             bodySize = R.drawable.babycat_fat;
         }
-        else if(caloriesCalculator(caloriesList) == -1){
+        else if(caloriesCalculator(sumCal) == -1){
             // && dayDiffCalculator(startingDate, currentDate) == (dayDiffCalculator(startingDate, goalDate)/3)
             bodySize = R.drawable.babycat_skinny;
         }
@@ -198,7 +207,7 @@ public class Page_02  extends Fragment{
         int bodySize;
 
         // below is temporary value, get data from entry part.
-        int[] caloriesList = {1275, 1300, 1100, 978, 1689, 2000, 1500}; // test normal body size change
+        //int[] caloriesList = {1275, 1300, 1100, 978, 1689, 2000, 1500}; // test normal body size change
         // sum = 9842
         // avg = sum/7 = 1406
         //int[] caloriesList = {1875, 2221, 2800, 1978, 1689, 2160, 2751}; // test fat body size
@@ -208,10 +217,12 @@ public class Page_02  extends Fragment{
         // sum = 6919
         // avg = sum/7 = 988.428571
 
-        if(caloriesCalculator(caloriesList) == 1){
+        int sumCal = getSumCalories();
+
+        if(caloriesCalculator(sumCal) == 1){
             bodySize = R.drawable.adultcat_fat;
         }
-        else if(caloriesCalculator(caloriesList) == -1){
+        else if(caloriesCalculator(sumCal) == -1){
             bodySize = R.drawable.adultcat_skinny;
         }
         else{
@@ -222,16 +233,16 @@ public class Page_02  extends Fragment{
     }
 
     // calculate the entry calories and compare with the goal.
-    public int caloriesCalculator(int[] caloriesList){
+    public int caloriesCalculator(int sumCal){ //int[] caloriesList
 
         // 0 = maintain; 1 = over ate; -1 = not ate enough.
 
         int healthyStatus;
 
-        int sum = 0;
-        for(int i = 0; i < caloriesList.length; i++){
-            sum = sum + caloriesList[i];
-        }
+//        int sum = 0;
+//        for(int i = 0; i < caloriesList.length; i++){
+//            sum = sum + caloriesList[i];
+//        }
 
         double goal = -2.5; // lose weight: negative, maintain use 0; gain weight use positive;
         // getGoal() from setting
@@ -277,7 +288,7 @@ public class Page_02  extends Fragment{
         // b.m: women - w = weight*4.35, h = height*4.7, add = w+h, subtract = add - age*4.7, result = subtract + 655
         // b.m: men - w = weight*6.23, h = height*12.7, add = w+h, subtract = add - age*6.8, result = subtract + 66
 
-        double weeklyAvg = sum/7;
+        double weeklyAvg = sumCal/7;
 
         if (weeklyAvg > (caloriesNeeded + 500)){
             healthyStatus = 1;
@@ -290,6 +301,25 @@ public class Page_02  extends Fragment{
         }
 
         return healthyStatus;
+    }
+
+    public int getSumCalories(){
+        ArrayList<Integer> calories = new ArrayList<>();
+        int perDay = 0;
+
+        String oldest;
+        String newest;
+
+        for(int i = 0; i < list.size(); i++){
+
+            if(dayDiffCalculator(list.get(i).getDate(), "18/03/2018") <= 7){
+                perDay+= list.get(i).getCalories();
+            }
+
+        }
+
+        return perDay;
+
     }
 
     // calculate the date differences between two date (in string) in days
@@ -442,5 +472,6 @@ public class Page_02  extends Fragment{
         t.start();
 
     }
+
 }
 

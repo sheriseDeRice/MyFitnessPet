@@ -87,7 +87,7 @@
         android:layout_width="wrap_content"
         android:layout_height="428dp"
         android:layout_marginTop="184dp"
-        android:background="@color/Crimson"
+        android:background="@drawable/not_found_background"
         android:elevation="0dp"
         android:entries="@android:string/httpErrorUnsupportedScheme"
         android:scrollbars="vertical"

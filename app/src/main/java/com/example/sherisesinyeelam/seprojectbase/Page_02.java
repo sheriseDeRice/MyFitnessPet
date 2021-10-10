@@ -50,7 +50,7 @@ public class Page_02  extends Fragment{
         // storing the starting date.
         startingDate = sdf.format(c.getTime());
 
-        goalDate = "26 Mar 2018\n01-30-00 PM"; // get form setting
+        goalDate = "27 Mar 2018\n11-50-00 PM"; // get form setting
         //goalDate = prefs.getString("EndingDate", "");
     }
 

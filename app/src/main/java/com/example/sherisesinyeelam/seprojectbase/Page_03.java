@@ -82,7 +82,6 @@ public class Page_03  extends Fragment {
             }
         });
 
-
         return PageThree;
     }
 
